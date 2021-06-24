@@ -115,9 +115,9 @@ def valid_on_batch(q_pad, qa_pad, target_pad, p_pad,skill_num, test=False):
 def train(ep):
     global f
     max_auc = 0
-    training_dat = {'epoch':[], 'train':[], 'valid':[]}
+#    training_dat = {'epoch':[], 'train':[], 'valid':[]}
     for epoch in range(ep):
-        training_dat['epoch'].append(epoch)
+#        training_dat['epoch'].append(epoch)
         model.train()
         total_loss = 0
         train_epoch_pred = []
@@ -132,7 +132,7 @@ def train(ep):
         train_epoch_pred = torch.cat(train_epoch_pred).cpu()
         train_epoch_target = torch.cat(train_epoch_target).cpu()
         train_auc = metrics.roc_auc_score(train_epoch_target, train_epoch_pred)
-        training_dat['train'].append(train_auc)
+#        training_dat['train'].append(train_auc)
         print('epoch %d,total loss: %f' % (epoch, total_loss), flush=True)
         print('train auc: %f' % train_auc)
         model.eval()
@@ -146,15 +146,15 @@ def train(ep):
         valid_epoch_pred = torch.cat(valid_epoch_pred).cpu()
         valid_epoch_target = torch.cat(valid_epoch_target).cpu()
         auc = metrics.roc_auc_score(valid_epoch_target, valid_epoch_pred)
-        training_dat['valid'].append(auc)
+#        training_dat['valid'].append(auc)
         print('valid auc:%f' % auc, flush=True)
         if auc > max_auc:
             max_auc = auc
             torch.save(model, 'model.pkl')
-    return training_dat
+#    return training_dat
         
 
-train_dat = train(args.epochs)
+train(args.epochs)
 #with open('data/'+args.dataset + '/results.json', 'w') as out:
 #    json.dump(train_dat, out)
 model = torch.load('model.pkl')
@@ -171,4 +171,4 @@ test_epoch_target = torch.cat(test_epoch_target).detach().cpu()
 auc = metrics.roc_auc_score(test_epoch_target, test_epoch_pred)
 print("test auc:%f" % auc)
 #pickle.dump(Storage, open('storage.pkl','wb'))
-pickle.dump(Embeddings, open('{}_embeddings.pkl'.format(args.dataset),'wb'))
+#pickle.dump(Embeddings, open('{}_embeddings.pkl'.format(args.dataset),'wb'))

@@ -6,8 +6,8 @@ import torch
 from torch.nn import functional as F
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu') 
 
-Storage = []
-Embeddings = {}
+#Storage = []
+#Embeddings = {}
 
 class SSAKT(nn.Module):
     def __init__(self, skill_num, embed_dim, num_channels, nhead, kernel_size, d_k, d_v, d_inner=2048,
