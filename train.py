@@ -6,7 +6,7 @@ import torch.nn as nn
 from torch.autograd import Variable
 import torch.optim as optim
 import sys
-from model import SSAKT, Storage, Embeddings
+from model import SSAKT#, Storage, Embeddings
 from dataloader import KTData
 from torch.utils.data import DataLoader
 from sklearn import metrics
