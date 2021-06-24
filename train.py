@@ -7,7 +7,6 @@ from torch.autograd import Variable
 import torch.optim as optim
 import sys
 from model import SSAKT, Storage, Embeddings
-from model_sakt import SAKT
 from dataloader import KTData
 from torch.utils.data import DataLoader
 from sklearn import metrics
@@ -55,10 +54,6 @@ if args.dataset == 'assist2009':
     args.skill_num = 110
     args.problem_num = 16891
 
-if args.dataset == 'assist2012':
-    args.skill_num = 245
-    args.problem_num = 50988
-
 if args.dataset == 'Junyi':
     args.skill_num = 1326
     args.problem_num = 25785
@@ -66,12 +61,6 @@ if args.dataset == 'Junyi':
 if args.dataset == 'ednet':
     args.skill_num = 1792
     args.problem_num = 13169
-
-elif args.dataset in ['STATICS','statics']:
-    args.skill_num = 1223
-
-elif args.dataset in ['assist2015']:
-    args.skill_num = 100
 
 elif args.dataset == 'assist2017':
     args.skill_num = 102
